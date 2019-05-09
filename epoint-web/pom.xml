@@ -1,0 +1,435 @@
+﻿﻿<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.epoint.frame</groupId>
+	<artifactId>epoint-web</artifactId>
+	<version>9.3.3-security</version>
+	<packaging>war</packaging>
+
+	<properties>
+		<!-- Dependency versions -->
+		<log4j_version>1.2.17_ch</log4j_version>
+		<!-- Plugin versions -->
+		<maven_compiler_plugin_version>3.3</maven_compiler_plugin_version>
+		<maven_resources_plugin_version>2.7</maven_resources_plugin_version>
+		<maven_install_plugin_version>2.5.2</maven_install_plugin_version>
+		<maven_deploy_plugin_version>2.8.2</maven_deploy_plugin_version>
+		<tomcat7_maven_plugin_version>2.2</tomcat7_maven_plugin_version>
+		<jrebel_maven_plugin_version>1.1.6</jrebel_maven_plugin_version>
+
+		<java_version>1.8</java_version>
+		<file_encoding>UTF-8</file_encoding>
+		<project.build.sourceEncoding>${file_encoding}</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>${file_encoding}</project.reporting.outputEncoding>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- 框架统一依赖管理，如需个性化依赖版本，请在下面的具体依赖包中增加版本定义 -->
+			<dependency>
+				<groupId>com.epoint.frame</groupId>
+				<artifactId>epoint-dependency</artifactId>
+				<version>9.3.3-security</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<!-- #########################华丽的分割线（下面是框架依赖包）######################### -->
+		<!-- 框架基础组件包 -->
+		<dependency>
+			<groupId>com.epoint.frame</groupId>
+			<artifactId>epoint-utils</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.epoint.frame</groupId>
+			<artifactId>epoint-database</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.epoint.frame</groupId>
+			<artifactId>epoint-dto</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.epoint.frame</groupId>
+			<artifactId>epoint-common</artifactId>
+		</dependency>
+
+		<!-- 框架基础服务API包 -->
+		<dependency>
+			<groupId>com.epoint.frame</groupId>
+			<artifactId>epoint-log-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.epoint.frame</groupId>
+			<artifactId>epoint-metadata-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.epoint.frame</groupId>
+			<artifactId>epoint-attachfile-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.epoint.frame</groupId>
+			<artifactId>epoint-message-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.epoint.frame</groupId>
+			<artifactId>epoint-im-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.epoint.frame</groupId>
+			<artifactId>epoint-organ-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.epoint.frame</groupId>
+			<artifactId>epoint-am-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.epoint.frame</groupId>
+			<artifactId>epoint-ui-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.epoint.frame</groupId>
+			<artifactId>epoint-rms-api</artifactId>
+		</dependency>
+		<!-- 框架高级服务API包 -->
+		<dependency>
+			<groupId>com.epoint.frame</groupId>
+			<artifactId>epoint-workflow-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.epoint.frame</groupId>
+			<artifactId>epoint-workflow-organ-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.epoint.frame</groupId>
+			<artifactId>epoint-workflow-mgmt-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.epoint.frame</groupId>
+			<artifactId>epoint-workflow-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.epoint.frame</groupId>
+			<artifactId>epoint-workflow-tccmain-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.epoint.frame</groupId>
+			<artifactId>epoint-stireport-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.epoint.frame</groupId>
+			<artifactId>epoint-sform-api</artifactId>
+		</dependency>
+		<!-- 以下实现包在本地化开发时需引入，服务化项目中进入集成测试环境时务必注释掉 -->
+		<!-- 框架基础服务实现包 -->
+		<dependency>
+			<groupId>com.epoint.frame</groupId>
+			<artifactId>epoint-log-impl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.epoint.frame</groupId>
+			<artifactId>epoint-metadata-impl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.epoint.frame</groupId>
+			<artifactId>epoint-attachfile-impl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.epoint.frame</groupId>
+			<artifactId>epoint-message-impl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.epoint.frame</groupId>
+			<artifactId>epoint-im-impl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.epoint.frame</groupId>
+			<artifactId>epoint-organ-impl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.epoint.frame</groupId>
+			<artifactId>epoint-am-impl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.epoint.frame</groupId>
+			<artifactId>epoint-ui-impl</artifactId>
+		</dependency>
+		<!-- 框架高级服务实现包 -->
+		<dependency>
+			<groupId>com.epoint.frame</groupId>
+			<artifactId>epoint-workflow-impl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.epoint.frame</groupId>
+			<artifactId>epoint-workflow-organ-impl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.epoint.frame</groupId>
+			<artifactId>epoint-workflow-tccmain-impl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.epoint.frame</groupId>
+			<artifactId>epoint-stireport-impl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.epoint.frame</groupId>
+			<artifactId>epoint-sform-impl</artifactId>
+		</dependency>
+		<!-- web控制层组件包 -->
+		<dependency>
+			<groupId>com.epoint.frame</groupId>
+			<artifactId>epoint-frame-action</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.epoint.frame</groupId>
+			<artifactId>epoint-action</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.epoint.frame</groupId>
+			<artifactId>epoint-workflow-action</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.epoint.frame</groupId>
+			<artifactId>epoint-stireport-action</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.epoint.frame</groupId>
+			<artifactId>epoint-sform-action</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.epoint.frame</groupId>
+			<artifactId>epoint-showcase-action</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.epoint.frame</groupId>
+			<artifactId>epoint-mobile-action</artifactId>
+		</dependency>
+
+		<!-- #########################华丽的分割线（下面是通用的开源组件包）######################### -->
+
+		<!-- 数据库的驱动包 -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.microsoft.sqlserver</groupId>
+			<artifactId>sqljdbc4</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc7</artifactId>
+		</dependency>
+
+	    <!-- 达梦库 -->
+		<!--<dependency>
+			<groupId>com.epoint.3rdparty</groupId>
+			<artifactId>Dm7JdbcDriver17</artifactId>
+			<version>1.0</version>
+		</dependency>-->
+		
+		<!-- 邮件 -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+		</dependency>
+
+		<!-- poi用于excel等office文档的操作 -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml-schemas</artifactId>
+		</dependency>
+
+		<!-- 当当网的分库分表 -->
+		<dependency>
+			<groupId>com.dangdang</groupId>
+			<artifactId>sharding-jdbc-core</artifactId>
+		</dependency>
+
+		<!-- 跨域请求 -->
+		<dependency>
+			<groupId>com.thetransactioncompany</groupId>
+			<artifactId>cors-filter</artifactId>
+		</dependency>
+		
+		<!-- Kryo序列化框架 -->
+		<dependency>
+			<groupId>com.esotericsoftware</groupId>
+			<artifactId>kryo</artifactId>
+		</dependency>
+
+		<!-- 下面3个包，在开启服务化环境时才需要引入 -->
+		<dependency>
+			<groupId>org.apache.zookeeper</groupId>
+			<artifactId>zookeeper</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.101tec</groupId>
+			<artifactId>zkclient</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.epoint.frame</groupId>
+			<artifactId>hydra-client</artifactId>
+		</dependency>
+
+		<!-- #########################华丽的分割线（下面的包在web工程中才需要引入,服务化的发布工程里面不需要）######################### -->
+
+		<!-- EL表达式 -->
+		<dependency>
+			<groupId>javax.el</groupId>
+			<artifactId>javax.el-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.enterprise</groupId>
+			<artifactId>cdi-api</artifactId>
+		</dependency>
+		<!-- 数据校验 -->
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+		</dependency>
+
+		<!-- ewebeditor -->
+		<dependency>
+			<groupId>ewebeditor</groupId>
+			<artifactId>ewebeditor</artifactId>
+		</dependency>
+		<!-- ueditor -->
+		<dependency>
+			<groupId>com.baidu</groupId>
+			<artifactId>ueditor</artifactId>
+		</dependency>
+		<!-- 下面的包百度编辑器所依赖 -->
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+		</dependency>
+
+		<!-- cxf webservice -->
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-ws-security</artifactId>
+		</dependency>
+
+		<!-- WebSocket -->
+		<dependency>
+			<groupId>org.atmosphere</groupId>
+			<artifactId>atmosphere-runtime</artifactId>
+		</dependency>
+		<!-- 开启WebSocket集群需要引入 -->
+		<!-- <dependency>
+			<groupId>org.atmosphere</groupId>
+			<artifactId>atmosphere-redis</artifactId>
+		</dependency> -->
+		<!-- java注入,WebSocket功能依赖 -->
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<plugins>
+			<!-- 编译插件，指定编译版本 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven_compiler_plugin_version}</version>
+				<configuration>
+					<source>${java_version}</source>
+					<target>${java_version}</target>
+					<encoding>${file_encoding}</encoding>
+				</configuration>
+			</plugin>
+			<!-- tomcat运行插件 -->
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>${tomcat7_maven_plugin_version}</version>
+				<configuration>
+					<path>/${project.artifactId}</path>
+					<port>8080</port>
+					<uriEncoding>${file_encoding}</uriEncoding>
+					<url>http://localhost:8080/</url>
+					<server>tomcat7</server>
+				</configuration>
+			</plugin>
+			<!-- txt、二进制文件不要过滤，防止这些文件打包后不可用 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>${maven_resources_plugin_version}</version>
+				<configuration>
+					<encoding>${file_encoding}</encoding>
+					<nonFilteredFileExtensions>
+						<nonFilteredFileExtension>so</nonFilteredFileExtension>
+						<nonFilteredFileExtension>dll</nonFilteredFileExtension>
+						<nonFilteredFileExtension>store</nonFilteredFileExtension>
+						<nonFilteredFileExtension>lic</nonFilteredFileExtension>
+					</nonFilteredFileExtensions>
+				</configuration>
+			</plugin>
+			<!-- jrebel插件，用于生成rebel.xml -->
+			<plugin>
+				<groupId>org.zeroturnaround</groupId>
+				<artifactId>jrebel-maven-plugin</artifactId>
+				<version>${jrebel_maven_plugin_version}</version>
+				<executions>
+					<execution>
+						<id>generate-rebel-xml</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<rebelXmlDirectory>${basedir}/src/main/resources</rebelXmlDirectory>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-install-plugin</artifactId>
+				<version>${maven_install_plugin_version}</version>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>${maven_deploy_plugin_version}</version>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
